@@ -9,7 +9,7 @@ const types = {
     corgi: 'corgi'
 }
 
-const defaultType = types.corgi;
+const defaultType = types.parrot;
 const typePath = `/${defaultType}/${defaultType}`;
 const fileType = 'png';
 
@@ -51,10 +51,11 @@ let window;
 
 app.once('ready', () => {
     window = new BrowserWindow({
-        width: 200,
-        height: 200
+        width: 70,
+        height: 20,
+        x: 0,
+        y: 0
     });
-    window.loadURL(`file://${path.join(__dirname, '/index.html')}`);
     window.setTouchBar(touchBar);
     animateParrots();
 })
