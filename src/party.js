@@ -3,13 +3,23 @@ const {app, BrowserWindow, TouchBar} = require('electron');
 
 const {TouchBarButton} = TouchBar;
 
-const numOfParrotsToDisplay = 4;
+const types = {
+    congaParrot: 'congaparrot',
+    parrot: 'parrot',
+    corgi: 'corgi'
+}
+
+const defaultType = types.corgi;
+const typePath = `/${defaultType}/${defaultType}`;
+const fileType = 'png';
+
+const numOfParrotsToDisplay = 9;
 const parrots = [];
 
 const initParrots = () => {
     for (let x = 0; x < numOfParrotsToDisplay; x++) {
         parrots.push(new TouchBarButton({
-            icon: path.join(__dirname, '/parrot/congaparrot000.png'),
+            icon: path.join(__dirname, `${typePath}000.${fileType}`),
             backgroundColor: '#000'
         }));
     }
@@ -21,13 +31,13 @@ const touchBar = new TouchBar(initParrots());
 let parrotFrame = 0;
 
 const updateParrotsFrames = () => {
-    if (parrotFrame > 9) {
+    if (parrotFrame > 7) {
         parrotFrame = 0;
     } else {
         parrotFrame += 1;
     }
 
-    const parrotPath = path.join(__dirname, `/parrot/congaparrot00${parrotFrame}.png`);
+    const parrotPath = path.join(__dirname, `${typePath}00${parrotFrame}.${fileType}`);
     for (let x = 0; x < numOfParrotsToDisplay; x++) {
         parrots[x].icon = parrotPath;
     }
